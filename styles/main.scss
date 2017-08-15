@@ -1,0 +1,78 @@
+@import 'variables';
+@import 'mixins';
+
+@each $image in $images {
+    $i: index($images, $image);
+    
+    #slide-#{$i} {
+      background-image: url('#{$image}');
+
+      @if $i == 1 {
+        z-index: 1;
+        opacity: 1;
+      }
+
+      &:target {
+        z-index: 2;
+        opacity: 1;
+
+        & ~ .bullets-container {
+          .bullet:nth-child(#{$i}) {
+            background-color: $bullet-active-color;
+          }
+        }
+      }
+    }
+}
+
+.slider-container {
+  width: 100vw;
+  position: relative;
+  overflow: hidden;
+  padding-top: $slide-height / $slide-width * 100%;
+}
+
+.slide {
+  position: absolute;
+  top:0;
+  left:0;
+  width: 100vw;
+  float: left;
+  padding-top: $slide-height / $slide-width * 100%;
+  opacity: 0;
+  z-index: 1;
+  background-position: center;
+  background-size: cover;
+  @include transition-duration($transition-time)
+}
+
+.bullets-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  z-index: 2;
+
+  & > .bullet {
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    border-radius: 20px;
+    background-color: $bullet-color;
+    @include transition-duration($transition-time);
+
+    &:active,
+    &:hover {
+      background-color: $bullet-active-color;
+    }
+  }
+}
+
+// utils
+
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}

@@ -1,0 +1,88 @@
+#slide-1 {
+  background-image: url("../images/slide-1.jpg");
+  z-index: 1;
+  opacity: 1; }
+  #slide-1:target {
+    z-index: 2;
+    opacity: 1; }
+    #slide-1:target ~ .bullets-container .bullet:nth-child(1) {
+      background-color: #66ccff; }
+
+#slide-2 {
+  background-image: url("../images/slide-2.jpg"); }
+  #slide-2:target {
+    z-index: 2;
+    opacity: 1; }
+    #slide-2:target ~ .bullets-container .bullet:nth-child(2) {
+      background-color: #66ccff; }
+
+#slide-3 {
+  background-image: url("../images/slide-3.jpg"); }
+  #slide-3:target {
+    z-index: 2;
+    opacity: 1; }
+    #slide-3:target ~ .bullets-container .bullet:nth-child(3) {
+      background-color: #66ccff; }
+
+#slide-4 {
+  background-image: url("../images/slide-4.png"); }
+  #slide-4:target {
+    z-index: 2;
+    opacity: 1; }
+    #slide-4:target ~ .bullets-container .bullet:nth-child(4) {
+      background-color: #66ccff; }
+
+#slide-5 {
+  background-image: url("../images/slide-5.png"); }
+  #slide-5:target {
+    z-index: 2;
+    opacity: 1; }
+    #slide-5:target ~ .bullets-container .bullet:nth-child(5) {
+      background-color: #66ccff; }
+
+.slider-container {
+  width: 100vw;
+  position: relative;
+  overflow: hidden;
+  padding-top: 37.5%; }
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  float: left;
+  padding-top: 37.5%;
+  opacity: 0;
+  z-index: 1;
+  background-position: center;
+  background-size: cover;
+  -webkit-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  transition-duration: 0.5s; }
+
+.bullets-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  z-index: 2; }
+  .bullets-container > .bullet {
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    border-radius: 20px;
+    background-color: #cef;
+    -webkit-transition-duration: 0.5s;
+    -o-transition-duration: 0.5s;
+    transition-duration: 0.5s; }
+    .bullets-container > .bullet:active, .bullets-container > .bullet:hover {
+      background-color: #66ccff; }
+
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both; }
+
+/*# sourceMappingURL=main.css.map */
