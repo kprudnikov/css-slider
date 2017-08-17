@@ -3,26 +3,29 @@
 
 @each $image in $images {
     $i: index($images, $image);
-    
-    #slide-#{$i} {
-      background-image: url('#{$image}');
 
-      @if $i == 1 {
-        z-index: 1;
-        opacity: 1;
+    #input-#{$i}:checked {
+      & ~ .slider-wrapper {
+        left: ($i - 1) * 100vw * -1;
       }
 
-      &:target {
-        z-index: 2;
-        opacity: 1;
-
-        & ~ .bullets-container {
-          .bullet:nth-child(#{$i}) {
-            background-color: $bullet-active-color;
-          }
+      & ~ .bullets-container {
+        .bullet:nth-child(#{$i}) {
+          background-color: $bullet-active-color;
         }
       }
     }
+    
+    #slide-#{$i} {
+      background-image: url('#{$image}');
+    }
+}
+
+.slider-wrapper {
+  position: absolute;
+  top: 0;
+  width: length($images) * 100vw;
+  @include transition-duration($transition-time);
 }
 
 .slider-container {
@@ -33,17 +36,12 @@
 }
 
 .slide {
-  position: absolute;
-  top:0;
-  left:0;
   width: 100vw;
   float: left;
-  padding-top: $slide-height / $slide-width * 100%;
-  opacity: 0;
-  z-index: 1;
+  padding-top: $slide-height / $slide-width * 100% / length($images);
   background-position: center;
   background-size: cover;
-  @include transition-duration($transition-time)
+  @include transition-duration($transition-time);
 }
 
 .bullets-container {
@@ -61,8 +59,8 @@
     border-radius: 20px;
     background-color: $bullet-color;
     @include transition-duration($transition-time);
+    cursor: pointer;
 
-    &:active,
     &:hover {
       background-color: $bullet-active-color;
     }
@@ -70,9 +68,17 @@
 }
 
 // utils
-
 .clearfix::after {
   content: "";
   display: table;
   clear: both;
+}
+
+.sr-only {
+  visibility: hidden;
+  height: 0.1px;
+  width: 0.1px;
+  position: absolute;
+  clip: rect(0,0,0,0);
+  border: 0;
 }
